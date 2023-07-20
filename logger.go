@@ -97,6 +97,7 @@ func NewErr(_err error) error {
 	}
 
 	log.SetOutput(file)
+	log.SetFlags(log.LstdFlags | log.Lshortfile)
 
 	log.Printf(dateTime + " ERROR: " + _err.Error() + "\n")
 	return nil
