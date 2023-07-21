@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"runtime"
 	"time"
 )
 
@@ -99,6 +100,8 @@ func NewErr(_err error) error {
 	log.SetOutput(file)
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 
-	log.Printf(dateTime + " ERROR: " + _err.Error() + "\n")
+	_, f, l, _ := runtime.Caller(1)
+
+	log.Printf("ERROR %s %s:%d: %v", dateTime, f, l, _err)
 	return nil
 }
